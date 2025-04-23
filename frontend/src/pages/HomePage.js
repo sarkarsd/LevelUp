@@ -32,9 +32,9 @@ const HomePage = () => {
     return <div>{error}</div>;
   }
 
-  if (!userStats || userStats.tasks.length === 0) {
+  if (!userStats || !Array.isArray(userStats.tasks)) {
     return <div>Loading...</div>;
-  }
+  }  
 
   //Pending Daily tasks
   const pendingDailyTasks = userStats.tasks.filter(
