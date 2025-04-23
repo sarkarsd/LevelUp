@@ -44,6 +44,12 @@ function TaskForm() {
 
   return (
     <div className="task-form-container">
+      
+      {/* Back button at top */}
+      <button className="back-button" onClick={() => navigate('/')}>
+          ← Back to Dashboard
+      </button>
+
       <h2>Create a New Task</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <form onSubmit={handleSubmit}>

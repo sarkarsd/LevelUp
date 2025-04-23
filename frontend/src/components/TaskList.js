@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import './TaskList.css';
 
 function TaskList() {
   const { userId } = useParams();
+  const navigate = useNavigate(); // initialize navigate
   const [tasks, setTasks] = useState([]);
   const [selectedDescription, setSelectedDescription] = useState(null);
   const [error, setError] = useState('');
@@ -28,6 +29,13 @@ function TaskList() {
 
   return (
     <div className="task-list-container">
+       
+       {/* Back button at top */}
+        <button className="back-button" onClick={() => navigate('/')}>
+          ← Back to Dashboard
+        </button>
+
+
       <h2>All Tasks</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {tasks.length === 0 ? (

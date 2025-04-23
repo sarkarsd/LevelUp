@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
 
-/* Page Container */
+/* Task Form Container */
 .task-form-container {
   min-height: 100vh;
   background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
@@ -11,7 +11,40 @@
   flex-direction: column;
   align-items: center;
   padding: 40px;
+  position: relative; /* Ensures child elements are correctly positioned */
 }
+
+/* Glowing Back Text */
+.back-button {
+  position: absolute;
+  top: 40px; /* Adjust to position it near the top */
+  left: 40px; /* Adjust to position it on the left side */
+  font-size: 16px;
+  color: #00bfff; /* Initial blue color */
+  text-decoration: none; /* Remove underline */
+  cursor: pointer;
+  font-weight: bold;
+  transition: color 0.3s ease, text-shadow 0.3s ease; /* Add transition for hover effect */
+  padding: 0 !important; /* No padding */
+  margin: 0 !important; /* No margin */
+  background: none !important; /* No background */
+  border: none !important; /* No border */
+  outline: none !important; /* Remove outline (no blue border on focus) */
+  box-shadow: none !important; /* Remove box-shadow that might be applied */
+}
+
+/* Glowing Effect on Hover */
+.back-button:hover {
+  color: #1e90ff; /* Lighter blue on hover */
+  text-shadow: 0 0 10px #00bfff, 0 0 20px #1e90ff, 0 0 30px #00bfff, 0 0 40px #1e90ff;
+}
+
+/* Focus State (when clicked or selected) */
+.back-button:focus {
+  outline: none;
+  text-decoration: underline; /* Underline when focused */
+}
+
 
 /* Title */
 .task-form-container h2 {
