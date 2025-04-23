@@ -27,6 +27,20 @@ function TaskList() {
     setSelectedDescription(selectedDescription === description ? null : description);
   };
 
+  
+  const handleDelete = async (taskId) => {
+    try {
+      await axios.delete(`http://localhost:8080/tasks/${taskId}`);
+      setTasks(tasks.filter(task => task.id !== taskId)); // Remove from UI
+      setSelectedDescription(null); // Close description box if deleted
+    } catch (err) {
+      setError('Failed to delete task');
+    }
+  };
+  
+  
+  
+  
   return (
     <div className="task-list-container">
        
@@ -52,6 +66,14 @@ function TaskList() {
               {selectedDescription === task.description && (
                 <div className="description-box">
                   <strong>Description:</strong> {task.description || 'No description'}
+                  {/* Delete Button */}
+                  <button className="delete-button" onClick={(e) => {
+                      e.stopPropagation(); // Prevent toggling description again
+                      handleDelete(task.id);
+                    }}
+                  >
+                    🗑️ Delete Task
+                  </button>
                 </div>
               )}
             </li>

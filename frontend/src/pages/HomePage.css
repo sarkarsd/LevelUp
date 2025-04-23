@@ -34,10 +34,31 @@
   max-width: 600px;
 }
 
+.user-stats {
+  background: rgba(20, 20, 20, 0.85);
+  padding: 20px 30px;
+  border: 2px solid #4fc3f7;
+  border-radius: 12px;
+  box-shadow: 0 0 15px #4fc3f7, 0 0 30px #21cbf3;
+  margin: 30px 0;
+  text-align: center;
+  width: 100%;
+}
+
 .user-stats p {
   margin: 10px 0;
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 0 0 5px #00bfff, 0 0 10px #00bfff;
+  transition: transform 0.2s ease;
 }
+
+.user-stats p:hover {
+  transform: scale(1.05);
+  text-shadow: 0 0 10px #00bfff, 0 0 20px #21cbf3;
+}
+
 
 /* Task Section */
 .task-summary {
@@ -69,19 +90,61 @@
   text-shadow: 0 0 5px #4fc3f7;
 }
 
-/* Individual Task */
 .task-item {
-  background: rgba(40, 40, 40, 0.9);
+  background: rgba(30, 30, 30, 0.9); /* Slightly darker */
   padding: 15px 20px;
-  border: 1px solid #4fc3f7;
-  border-radius: 8px;
+  border: 1px solid #4eafca; /* Less vibrant blue */
+  border-radius: 1px;
   margin-bottom: 10px;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, border 0.3s ease;
+  box-shadow: none!important; /* Keep this off if you want zero glow */
 }
 
 .task-item:hover {
-  background: rgba(60, 60, 60, 0.9);
+  background: rgba(45, 45, 45, 0.9); /* Subtle hover */
+  border-color: #309fb8; /* Slight change on hover */
 }
+
+
+.task-inline {
+  display: flex;
+  justify-content: space-between; /* Space them out */
+  align-items: center;
+  width: 100%;
+}
+
+.task-inline p {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+  color: #e0f7fa;
+  text-shadow: 0 0 5px rgba(33, 203, 243, 0.5);
+  letter-spacing: 0.5px;
+  flex: 1; /* Make each p take equal width */
+  text-align: center; /* Center by default */
+}
+
+.task-title {
+  font-weight: 700;
+  color: #f8f8f8;
+  text-shadow: 0 0 6px #4fc3f7;
+  text-align: left;
+}
+
+.task-xp {
+  color: #00e676 !important;
+  text-shadow: 0 0 5px #00e676;
+  text-align: center;
+}
+
+.task-status {
+  color: #ffeb3b !important;
+  text-shadow: 0 0 5px #ffeb3b;
+  text-align: right;
+}
+
+
+
 
 /* Flex container for both buttons */
 .task-buttons {

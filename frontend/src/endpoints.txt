@@ -36,7 +36,7 @@ GET http://localhost:8080/tasks/user/{id} -> fetch tasks by user id -> Body =  [
 
 
 
-POST http://localhost:8080/tasks/{id}/complete -> create tasks -> Body = Task completed! XP added and level updated.
+POST http://localhost:8080/tasks/{id}/complete -> Body = Task completed! XP added and level updated.
 
 
 -------------------------------------------------UserController----------------------------------------------------------

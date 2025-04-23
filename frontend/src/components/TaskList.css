@@ -102,3 +102,24 @@
   color: #ff5252;
   font-size: 18px;
 }
+
+
+.delete-button {
+  display: block;
+  margin-top: 15px;
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: #ff5252;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: right;
+  text-shadow: 0 0 5px #ff5252;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.delete-button:hover {
+  color: #ff0000;
+  text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+}

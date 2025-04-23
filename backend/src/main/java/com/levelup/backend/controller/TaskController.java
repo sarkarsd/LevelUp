@@ -120,5 +120,18 @@ public class TaskController{
     }
 
 
+    // DELETE /tasks/{id} – Delete a task by ID
+    @DeleteMapping("/{id}")
+    public String deleteTask(@PathVariable Long id) {
+        if (!taskRepository.existsById(id)) {
+            return "Task not found!";
+        }
+
+        taskRepository.deleteById(id);
+        return "Task deleted successfully!";
+    }
+
+
+
 
 }

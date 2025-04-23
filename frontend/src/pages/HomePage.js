@@ -69,8 +69,11 @@ const HomePage = () => {
           <h3>Daily Tasks ({pendingDailyTasks.length||0})</h3>
           {userStats.tasks.filter((task) => task.type === "DAILY").map((task) => (
             <div key={task.title} className="task-item">
-              <p>{task.title}</p>
-              <p>XP: {task.xp}</p>
+              <div className="task-inline">
+                <p className="task-title">{task.title}</p>
+                <p className="task-xp">XP: {task.xp}</p>
+                <p className="task-status">In-Progress</p>
+              </div>
             </div>
           ))}
         </div>
@@ -80,8 +83,11 @@ const HomePage = () => {
           <h3>Main Task ({pendingMainTasks.length ||0})</h3>
           {userStats.tasks.filter((task) => task.type === "MAIN").map((task) => (
             <div key={task.title} className="task-item">
-              <p>{task.title}</p>
-              <p>XP: {task.xp}</p>
+              <div className="task-inline">
+                <p className="task-title">{task.title}</p>
+                <p className="task-xp">XP: {task.xp}</p>
+                <p className="task-status">In-Progress</p>
+              </div>
             </div>
           ))}
         </div>
@@ -91,8 +97,11 @@ const HomePage = () => {
           <h3>Side Tasks ({pendingSideTasks.length||0})</h3>
           {userStats.tasks.filter((task) => task.type === "SIDE").map((task) => (
             <div key={task.title} className="task-item">
-              <p>{task.title}</p>
-              <p>XP: {task.xp}</p>
+              <div className="task-inline">
+                <p className="task-title">{task.title}</p>
+                <p className="task-xp">XP: {task.xp}</p>
+                <p className="task-status">In-Progress</p>
+              </div>
             </div>
           ))}
         </div>
