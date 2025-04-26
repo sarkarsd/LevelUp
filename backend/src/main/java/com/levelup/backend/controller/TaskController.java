@@ -42,7 +42,8 @@ public class TaskController{
 
         if (task.getType() == TaskType.MAIN) {
             List<Task> existingMainTasks = taskRepository.findByUserIdAndType(user.getId(), TaskType.MAIN);
-            if (!existingMainTasks.isEmpty()) {
+            boolean hasPendingMainTask = existingMainTasks.stream().anyMatch(existingTask -> existingTask.getStatus() == TaskStatus.PENDING);
+            if (hasPendingMainTask) {
                 return "User already has a MAIN task!";
             }
         }

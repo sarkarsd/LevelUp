@@ -75,7 +75,7 @@ public class UserService {
 
         // Task details (title, type, xp)
         List<TaskSummaryDTO> taskSummaries = pendingTasks.stream()
-            .map(task -> new TaskSummaryDTO(task.getTitle(), task.getType(), task.getXp()))
+            .map(task -> new TaskSummaryDTO(task.getId(), task.getTitle(), task.getType(), task.getXp()))
         .collect(Collectors.toList());
         stats.setTasks(taskSummaries);
 

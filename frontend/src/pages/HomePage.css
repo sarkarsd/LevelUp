@@ -92,7 +92,8 @@
 
 .task-item {
   background: rgba(30, 30, 30, 0.9); /* Slightly darker */
-  padding: 15px 20px;
+  position: relative;
+  padding: 15px 20px 60px 20px; /* increased bottom padding */
   border: 1px solid #4eafca; /* Less vibrant blue */
   border-radius: 1px;
   margin-bottom: 10px;
@@ -111,6 +112,7 @@
   justify-content: space-between; /* Space them out */
   align-items: center;
   width: 100%;
+  margin-bottom: 10px; /* create space from the Complete button */
 }
 
 .task-inline p {
@@ -144,6 +146,81 @@
 }
 
 
+/* Complete text styling */
+.complete-text {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-size: 14px;
+  color: #4caf50;
+  cursor: pointer;
+  font-weight: 600;
+  text-shadow: 0 0 4px rgba(76, 175, 80, 0.6);
+  transition: color 0.2s ease;
+  background: none;        /* Remove background */
+  border: none;            /* Just in case */
+  padding: 0;              /* Remove any space inside */
+  margin: 0;               /* Remove outer space */
+}
+
+.complete-text:hover {
+  color: #66bb6a;
+  text-shadow: 0 0 6px rgba(102, 187, 106, 0.9);
+}
+
+/* Modal Background */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Modal Content Box */
+.modal-content {
+  background: rgba(20, 20, 20, 0.95);
+  padding: 30px 20px;
+  border: 2px solid #4fc3f7;
+  border-radius: 12px;
+  box-shadow: 0 0 15px #21cbf3, 0 0 30px #21cbf3;
+  text-align: center;
+  width: 320px;
+  color: #ffffff;
+}
+
+/* Modal Text */
+.modal-content p {
+  font-size: 18px;
+  margin-bottom: 20px;
+  text-shadow: 0 0 6px #4fc3f7;
+}
+
+/* Modal Buttons */
+.modal-content button {
+  background: linear-gradient(90deg, #2196f3, #21cbf3);
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  margin: 0 10px;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 10px #21cbf3, 0 0 20px #21cbf3;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.modal-content button:hover {
+  background: linear-gradient(90deg, #21cbf3, #2196f3);
+  transform: scale(1.05);
+}
 
 
 /* Flex container for both buttons */

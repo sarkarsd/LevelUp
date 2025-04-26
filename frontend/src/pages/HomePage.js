@@ -6,6 +6,8 @@ import './HomePage.css';
 const HomePage = () => {
   const [userStats, setUserStats] = useState(null);
   const [error, setError] = useState(null);
+  const [selectedTaskId, setSelectedTaskId] = useState(null);
+  const [showModal, setShowModal] = useState(false); // Control visibility of the modal
 
   useEffect(() => {
     // Fetch stats for user with id 1 (adjust id as needed)
@@ -27,6 +29,36 @@ const HomePage = () => {
       console.log('Checking User ID::', userStats.id);
     }
   }, [userStats]);
+
+  const handleCompleteTask = (taskId) => {
+    // Send the POST request to mark the task as completed
+    axios
+      .post(`http://localhost:8080/tasks/${taskId}/complete`)
+      .then((response) => {
+        setUserStats((prevStats) => {
+          // Update the task's status in the userStats state
+          const updatedTasks = prevStats.tasks.map((task) => 
+            task.id === taskId ? { ...task, status: 'COMPLETED' } : task
+          ).filter((task) => task.status !== "COMPLETED"); // ✨ Immediately remove completed task;
+          return { ...prevStats, tasks: updatedTasks };
+        });
+        setShowModal(false); // Hide the modal
+        window.location.reload(); // Force reload to refresh everything
+      })
+      .catch((err) => {
+        alert("Error completing task: " + err.message);
+        setShowModal(false); // Hide the modal in case of error
+      });
+  };
+
+  const handleTaskClick = (taskId) => {
+    if (selectedTaskId === taskId) {
+      setSelectedTaskId(null); // Deselect the task if it’s already selected
+    } else {
+      setSelectedTaskId(taskId); // Select a new task
+      console.log('Selected Task ID::', taskId);
+    }
+  };
 
   if (error) {
     return <div>{error}</div>;
@@ -68,12 +100,24 @@ const HomePage = () => {
         <div className="task-type">
           <h3>Daily Tasks ({pendingDailyTasks.length||0})</h3>
           {userStats.tasks.filter((task) => task.type === "DAILY").map((task) => (
-            <div key={task.title} className="task-item">
+            <div key={task.id} className="task-item"   onClick={() => handleTaskClick(task.id)}>
               <div className="task-inline">
                 <p className="task-title">{task.title}</p>
                 <p className="task-xp">XP: {task.xp}</p>
                 <p className="task-status">In-Progress</p>
               </div>
+              {selectedTaskId === task.id && !showModal && (
+                <button
+                  className="complete-text"
+                  onClick={(e) => {
+                    e.stopPropagation(); // Prevent triggering parent div’s onClick
+                    setShowModal(true);
+                  }}
+                >
+                  Complete
+                </button>
+              )}
+
             </div>
           ))}
         </div>
@@ -82,12 +126,24 @@ const HomePage = () => {
         <div className="task-type">
           <h3>Main Task ({pendingMainTasks.length ||0})</h3>
           {userStats.tasks.filter((task) => task.type === "MAIN").map((task) => (
-            <div key={task.title} className="task-item">
+            <div key={task.id} className="task-item"   onClick={() => handleTaskClick(task.id)}>
               <div className="task-inline">
                 <p className="task-title">{task.title}</p>
                 <p className="task-xp">XP: {task.xp}</p>
                 <p className="task-status">In-Progress</p>
               </div>
+              {selectedTaskId === task.id && !showModal && (
+                <button
+                  className="complete-text"
+                  onClick={(e) => {
+                    e.stopPropagation(); // Prevent triggering parent div’s onClick
+                    setShowModal(true);
+                  }}
+                >
+                  Complete
+                </button>
+              )}
+
             </div>
           ))}
         </div>
@@ -96,12 +152,24 @@ const HomePage = () => {
         <div className="task-type">
           <h3>Side Tasks ({pendingSideTasks.length||0})</h3>
           {userStats.tasks.filter((task) => task.type === "SIDE").map((task) => (
-            <div key={task.title} className="task-item">
+            <div key={task.id} className="task-item"  onClick={() => handleTaskClick(task.id)}>
               <div className="task-inline">
                 <p className="task-title">{task.title}</p>
                 <p className="task-xp">XP: {task.xp}</p>
                 <p className="task-status">In-Progress</p>
               </div>
+              {selectedTaskId === task.id && !showModal && (
+                <button
+                  className="complete-text"
+                  onClick={(e) => {
+                    e.stopPropagation(); // Prevent triggering parent div’s onClick
+                    setShowModal(true);
+                  }}
+                >
+                  Complete
+                </button>
+              )}
+
             </div>
           ))}
         </div>
@@ -114,6 +182,20 @@ const HomePage = () => {
           <Link to={`/task-form/${userStats.id}`} className="create-task-btn">Create New Task</Link>
           <Link to={`/task-list/${userStats.id}`} className="view-task-btn">View All Tasks</Link>
         </div>
+
+
+
+        {/* Modal for confirmation */}
+        {showModal && (
+          <div className="modal">
+            <div className="modal-content">
+              <p>Are you sure you want to mark this task as completed?</p>
+              <button onClick={() => handleCompleteTask(selectedTaskId)}>Yes</button>
+              <button onClick={() => setShowModal(false)}>Cancel</button>
+            </div>
+          </div>
+
+        )}
     </div>
   );
 };
