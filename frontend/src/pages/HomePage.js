@@ -30,6 +30,10 @@ const HomePage = () => {
     }
   }, [userStats]);
 
+  const calculateXpForNextLevel = (level) => {
+    return 100 * Math.pow(2, level);
+  };
+
   const handleCompleteTask = (taskId) => {
     // Send the POST request to mark the task as completed
     axios
@@ -88,7 +92,7 @@ const HomePage = () => {
       <h1>{userStats.name}'s Dashboard</h1>
       <div className="user-stats">
         <p>Level: {userStats.level}</p>
-        <p>Total XP: {userStats.totalXp}</p>
+        <p> Total XP: {userStats.totalXp} / {calculateXpForNextLevel(userStats.level)}</p>
       </div>
 
       <div className="task-summary">
