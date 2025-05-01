@@ -2,17 +2,19 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import './HomePage.css'; 
+import { useParams } from 'react-router-dom';
 
 const HomePage = () => {
   const [userStats, setUserStats] = useState(null);
   const [error, setError] = useState(null);
   const [selectedTaskId, setSelectedTaskId] = useState(null);
   const [showModal, setShowModal] = useState(false); // Control visibility of the modal
+  const { userId } = useParams();
 
   useEffect(() => {
     // Fetch stats for user with id 1 (adjust id as needed)
     axios
-      .get("http://localhost:8080/users/1/stats")
+      .get("http://localhost:8080/users/${userId}/stats")
       .then((response) => {
         console.log('Getting Stats Response::',response);         // See full response
         console.log('Getting Stats Response Data::', response.data);    // See only the important data part
