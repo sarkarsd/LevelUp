@@ -35,7 +35,7 @@ function TaskForm() {
       setError('');
       
       // Navigate back to the homepage after successful task creation
-      navigate('/');  // Use navigate() to redirect to the home page
+      navigate(`/dashboard/${userId}`);  // Use navigate() to redirect to the home page
     } catch (err) {
       const errorMessage = err.response?.data?.message || 'Failed to create task.';
       setError(errorMessage);
@@ -46,7 +46,7 @@ function TaskForm() {
     <div className="task-form-container">
       
       {/* Back button at top */}
-      <button className="back-button" onClick={() => navigate('/')}>
+      <button className="back-button" onClick={() => navigate(`/dashboard/${userId}`)}>
           ← Back to Dashboard
       </button>
 

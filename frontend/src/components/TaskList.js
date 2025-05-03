@@ -45,7 +45,7 @@ function TaskList() {
     <div className="task-list-container">
        
        {/* Back button at top */}
-        <button className="back-button" onClick={() => navigate('/')}>
+        <button className="back-button" onClick={() => navigate(`/dashboard/${userId}`)}>
           ← Back to Dashboard
         </button>
 

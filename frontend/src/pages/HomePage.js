@@ -14,7 +14,7 @@ const HomePage = () => {
   useEffect(() => {
     // Fetch stats for user with id 1 (adjust id as needed)
     axios
-      .get("http://localhost:8080/users/${userId}/stats")
+      .get(`http://localhost:8080/users/${userId}/stats`)
       .then((response) => {
         console.log('Getting Stats Response::',response);         // See full response
         console.log('Getting Stats Response Data::', response.data);    // See only the important data part
@@ -24,7 +24,7 @@ const HomePage = () => {
       .catch((err) => {
         setError("Error fetching user stats: " + err.message);
       });
-  }, []);
+  }, [userId]);
 
   useEffect(() => {
     if (userStats) {

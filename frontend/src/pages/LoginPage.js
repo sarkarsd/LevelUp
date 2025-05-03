@@ -15,13 +15,21 @@ const LoginPage = () => {
       const res = await axios.post('http://localhost:8081/auth/login', null, {
         params: { email, password },
       });
-
-      const { userId } = res.data;
-      navigate(`/dashboard/${userId}`);
+  
+      if (res.data.userId) { 
+        const { userId } = res.data;
+        navigate(`/dashboard/${userId}`);
+      } else if (res.data.error) {
+        setError(res.data.error); // e.g., "Invalid email or password"
+      } else {
+        setError("Unexpected response from server");
+      }
+  
     } catch (err) {
-      setError('Invalid email or password');
+      setError('Server error. Please try again later.');
     }
   };
+  
 
   return (
     <div className="login-page">
